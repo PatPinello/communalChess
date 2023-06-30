@@ -3,22 +3,22 @@ import { useAuthContext } from '../hooks/useAuthContext'
 import UserDetails from '../components/userDetails'
 import { Chessboard } from 'react-chessboard'
 import './chess.css'
-import {Chess} from 'chess.js'
+// import {Chess} from 'chess.js'
 
 const Home = () => {
     const [users, setUsers] = useState(null)
     const {user} = useAuthContext()
-    const [game, setGame] = useState(new Chess())
+    // const [game, setGame] = useState(new Chess())
 
-    //game
-    function safeGameMutate(modify){
-        setGame((g)=>{
-            const update = {...g}
-            modify(update)
-            return update
-        })
-    }
-    
+    // //game
+    // function safeGameMutate(modify){
+    //     setGame((g)=>{
+    //         const update = {...g}
+    //         modify(update)
+    //         return update
+    //     })
+    // }
+
 
 
 
