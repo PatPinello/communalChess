@@ -1,0 +1,14 @@
+chessBoard {
+    
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 20%!important;
+    width: 10%!important;
+}
+
+*{
+    margin: 0;
+    padding: 10 10 10 10;
+    box-sizing: border-box;
+}

@@ -11,6 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar/>
+        
         <div className='pages'>
           <Routes>
             <Route 
@@ -21,16 +22,17 @@ function App() {
             <Route 
               path="/login"
               element={!user ? <Login /> : <Navigate to="/"/>}
-            
+              
             />
             <Route 
               path="/signup"
               element={!user ? <SignUp /> : <Navigate to="/"/>}
-            
             />
           </Routes>
+          
         </div>
       </BrowserRouter>
+      
     </div>
   );
 }
