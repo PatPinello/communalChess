@@ -56,10 +56,11 @@ const getUser = async (req,res) =>  {
 }
 //create user
 const createUser = async(req,res) => {
-    const {email,password,numVotes,voted} = req.body
+    const {email,password,numVotes,voted,currentColor,user_id} = req.body
     
     try {
-        const user = await userModel.create({email,password,numVotes,voted})
+        
+        const user = await userModel.create({email,password,numVotes,voted,currentColor,user_id})
         res.status(200).json(user)
     } catch (error) {
         res.status(400).json({error: error.message})

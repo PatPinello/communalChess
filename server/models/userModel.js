@@ -29,7 +29,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
         default: color[Math.round((Math.random()))]
-
+    },
+    user_id: {
+        type: String,
+        required: true
     }
 }, { timestamps: true })
 

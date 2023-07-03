@@ -7,6 +7,8 @@ import SignUp from './pages/SignUp'
 
 function App() {
   const { user } = useAuthContext()
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -17,6 +19,11 @@ function App() {
             <Route 
               path="/"
               element={user ? <Home /> : <Navigate to='/login'/>}
+            
+            />
+            <Route 
+              path="/playChess"
+              element={user ? <playChess /> : <Navigate to='/login'/>}
             
             />
             <Route 
@@ -32,6 +39,7 @@ function App() {
           
         </div>
       </BrowserRouter>
+      
       
     </div>
   );
