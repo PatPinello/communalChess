@@ -15,11 +15,13 @@ const router = express.Router()
 router.use(requireAuth)
 
 //get all
-router.get('/', getAllUsers)
+// router.get('/', getAllUsers)
+router.post('/', getAllUsers)
+
 //get one
 router.get('/:id', getUser)
 //post
-router.post('/', createUser)
+// router.post('/', createUser)
 //delete
 router.delete('/:id', deleteUser)
 //patch

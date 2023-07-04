@@ -10,13 +10,21 @@ const Home = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const res = await fetch('/api/communalChess', {
+            const res = await fetch(`/api/communalChess/${user.userID}`, {
+                
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
+                
             })
+            
             const json = await res.json()
-            if (res.ok) setUsers(json)
+            if (res.ok)
+            {
+            
+                setUsers(json)
+            } 
+            
         }
         
         if(user) fetchUsers()
@@ -25,10 +33,10 @@ const Home = () => {
     return(
         <div className="Home">
             <div className='users'>
-                {users && users.map((user) => (
                     
-                    <UserDetails key={user._id} user={user}/>
-                ))}
+                    {users && 
+                    <UserDetails user={users["user"]}/>
+                    }
             </div>
             {PlayChess()}
             

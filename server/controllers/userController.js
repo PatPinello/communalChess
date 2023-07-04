@@ -8,8 +8,11 @@ const createToken = (_id)=>{
 
 //get all users
 const getAllUsers = async (req,res) =>  {
-    const users = await userModel.find({}).sort({createdAt: -1})
-    res.status(200).json(users)
+    
+    const {userID} = req.body
+    console.log("HELLO" + userID)
+    const users = await userModel.findById(userID)
+    res.status(200).json({users})
 }
 
 //login user
@@ -17,9 +20,10 @@ const loginUser = async(req, res)=>{
     const {email, password} = req.body
     try{
         const user = await userModel.login(email,password)
-        const token = createToken(user._id)
+        const userID = user._id
+        const token = createToken(userID)
         
-        res.status(200).json({email, token})
+        res.status(200).json({email, token, userID})
     }catch(error){
         res.status(400).json({error: error.message})
     }
@@ -31,6 +35,7 @@ const signupUser = async(req, res)=>{
     try{
         const user = await userModel.signup(email,password)
         const token = createToken(user._id)
+        
         
         res.status(200).json({email, token})
     }catch(error){
@@ -44,7 +49,7 @@ const signupUser = async(req, res)=>{
 //get a single user
 const getUser = async (req,res) =>  {
     const {id} = req.params
-
+    
     if(!mongoose.Types.ObjectId.isValid(id))
         return res.status(404).json({error: 'No User'})
 

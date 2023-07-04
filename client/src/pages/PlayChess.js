@@ -15,9 +15,9 @@ function PlayChess(){
             return update
         })
     }
-    function makeRandomMove(){
-        const possibleMoveBlack = game.moves()
-        alert("black" + possibleMoveBlack)
+    function makeMoveBlack(){
+        let possibleMoveBlack = game.moves()
+        
         if(game.game_over() || game.in_draw() || possibleMoveBlack.length === 0) return;
 
         const randomIndex = Math.floor(Math.random() * possibleMoveBlack.length)
@@ -29,8 +29,7 @@ function PlayChess(){
 
     function onDrop(source,target){
         let move=null
-        const possibleMoveWhite = game.moves()
-        alert("white" + possibleMoveWhite)
+        let possibleMoveWhite = game.moves()
         safeGameMutate((game)=>{
             move = game.move({
                 from:source,
@@ -40,7 +39,7 @@ function PlayChess(){
         })
         if(move==null) return false
 
-        setTimeout(makeRandomMove, 200)
+        setTimeout(makeMoveBlack, 200)
         return true
     }
 
