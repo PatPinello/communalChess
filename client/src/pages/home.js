@@ -32,11 +32,10 @@ const Home = () => {
 
     return(
         <div className="Home">
-            <div className='users'>
-                    
-                    {users && 
-                    <UserDetails user={users["user"]}/>
-                    }
+            <div className='users'> 
+                {users && 
+                <UserDetails user={users["user"]}/>
+                }
             </div>
             {PlayChess()}
             
