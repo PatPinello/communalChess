@@ -1,5 +1,4 @@
-
-const userDetails = ({ user }) => {
+const UserDetails = ({ user }) => {
     if(!user) return
     return(
     <div className="user-details">
@@ -10,4 +9,4 @@ const userDetails = ({ user }) => {
     </div>)
 }
 
-export default userDetails
+export default UserDetails

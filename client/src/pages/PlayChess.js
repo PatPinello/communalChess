@@ -2,11 +2,13 @@ import { Chessboard } from 'react-chessboard'
 import './chess.css'
 import {Chess} from 'chess.js'
 import { useState } from 'react'
+import MoveChoices from '../components/moveChoices'
+import { vote } from '../components/moveChoices'
 
-
-function PlayChess(){
+function PlayChess(currentColor){
     const [game, setGame] = useState(new Chess())
-
+    const [possibleMoveWhite, setPossibleMoveWhite] = useState(null)
+    const [possibleMoveBlack, setPossibleMoveBlack] = useState(null)
     //game
     function safeGameMutate(modify){
         setGame((g)=>{
@@ -16,7 +18,7 @@ function PlayChess(){
         })
     }
     function makeMoveBlack(){
-        let possibleMoveBlack = game.moves()
+        setPossibleMoveBlack(game.moves())
         
         if(game.game_over() || game.in_draw() || possibleMoveBlack.length === 0) return;
 
@@ -29,7 +31,10 @@ function PlayChess(){
 
     function onDrop(source,target){
         let move=null
-        let possibleMoveWhite = game.moves()
+        
+        setPossibleMoveWhite(game.moves())
+        
+
         safeGameMutate((game)=>{
             move = game.move({
                 from:source,
@@ -44,13 +49,26 @@ function PlayChess(){
     }
 
     return(  
-        <div className='chessBoard'>
-            <Chessboard 
-                position={game.fen()}
-                onPieceDrop = {onDrop}
-            />
+        <div className='game'>
+            
+            <div className='moveChoices'>
+                <MoveChoices 
+                    chess={game} 
+                    color={(currentColor.toString()).charAt(0)}
+                />     
+            </div>
+            <div className='chessBoard'>
+                
+                <Chessboard 
+                    position={game.fen()}
+                    onPieceDrop = {onDrop}
+                    boardOrientation={currentColor}
+                />
+            </div>
         </div>
         
     )
+    
 }
 export default PlayChess
+
