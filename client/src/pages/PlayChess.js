@@ -2,11 +2,11 @@ import { Chessboard } from 'react-chessboard'
 import './chess.css'
 import {Chess} from 'chess.js'
 import { useState } from 'react'
-
-
-function PlayChess(){
+import MoveChoices from '../components/moveChoices'
+function PlayChess(currentColor){
     const [game, setGame] = useState(new Chess())
-
+    const [possibleMoveWhite, setPossibleMoveWhite] = useState(null)
+    const [possibleMoveBlack, setPossibleMoveBlack] = useState(null)
     //game
     function safeGameMutate(modify){
         setGame((g)=>{
@@ -15,15 +15,12 @@ function PlayChess(){
             return update
         })
     }
-    function makeMoveBlack(){
-        let possibleMoveBlack = game.moves()
-        
-        if(game.game_over() || game.in_draw() || possibleMoveBlack.length === 0) return;
-
-        const randomIndex = Math.floor(Math.random() * possibleMoveBlack.length)
-
+    function makeMoveBlack(inputMove){
+        setPossibleMoveBlack(game.moves())
+        if(game.game_over() || game.in_threefold_repetition() || game.in_draw() || possibleMoveBlack.length === 0) return;
+        if(!(game.moves()).includes(inputMove)) return false
         safeGameMutate((game)=>{
-            game.move(possibleMoveBlack[randomIndex])
+            game.move(inputMove)
         })
     }
 
@@ -44,13 +41,29 @@ function PlayChess(){
     }
 
     return(  
-        <div className='chessBoard'>
-            <Chessboard 
-                position={game.fen()}
-                onPieceDrop = {onDrop}
-            />
-        </div>
         
+        <div className="container">
+            
+                <div className='game row'>
+                    <div className='moveChoices col-md-3 order-0' >
+                        <form onSubmit={handleSubmit}>
+                            <MoveChoices 
+                                chess={game} 
+                                color={(currentColor.toString()).charAt(0)}
+                                setMoveVotedFor={setMoveVotedFor}
+                            />                   
+                        </form>
+                    </div>
+                    <div className='chessBoard col-md-9 order-1'>
+                        <Chessboard 
+                            position={game.fen()}
+                            onPieceDrop = {onDrop}
+                            boardOrientation={currentColor}
+                        />
+                    </div>
+                </div>
+            
+        </div>
     )
 }
 export default PlayChess

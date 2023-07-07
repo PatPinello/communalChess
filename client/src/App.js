@@ -1,13 +1,13 @@
 import { Navigate, BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
+import { useState } from 'react'
 import Home from './pages/home'
 import Navbar from './components/navbar'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
-
+import "bootstrap/dist/css/bootstrap.min.css"
 function App() {
   const { user } = useAuthContext()
-
 
   return (
     <div className="App">
