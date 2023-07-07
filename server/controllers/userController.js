@@ -20,8 +20,9 @@ const loginUser = async(req, res)=>{
     try{
         const user = await userModel.login(email,password)
         const token = createToken(user._id)
+        const userID = user._id
         
-        res.status(200).json({email, token})
+        res.status(200).json({email, token, userID})
     }catch(error){
         res.status(400).json({error: error.message})
     }

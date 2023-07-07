@@ -6,6 +6,7 @@ import PlayChess from './PlayChess'
 
 const Home = () => {
     const [users, setUsers] = useState(null)
+    const [currentColor, setCurrentColor] = useState("white")
     const {user} = useAuthContext()
 
     useEffect(() => {
@@ -21,8 +22,8 @@ const Home = () => {
             const json = await res.json()
             if (res.ok)
             {
-            
                 setUsers(json)
+                setCurrentColor(json["user"]["currentColor"])
             } 
             
         }
@@ -37,7 +38,7 @@ const Home = () => {
                 <UserDetails user={users["user"]}/>
                 }
             </div>
-            {PlayChess()}
+            {PlayChess(currentColor)}
             
         </div>
     )
