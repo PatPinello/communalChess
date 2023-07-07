@@ -5,8 +5,15 @@ import { useState } from 'react'
 import MoveChoices from '../components/moveChoices'
 function PlayChess(currentColor){
     const [game, setGame] = useState(new Chess())
-    const [possibleMoveWhite, setPossibleMoveWhite] = useState(null)
-    const [possibleMoveBlack, setPossibleMoveBlack] = useState(null)
+    const [setPossibleMoveWhite] = useState(null)
+    const [possibleMoveBlack, setPossibleMoveBlack] = useState("a6")
+    const [moveVotedFor, setMoveVotedFor] = useState(null)
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        makeMoveBlack(moveVotedFor)
+      }
     //game
     function safeGameMutate(modify){
         setGame((g)=>{
