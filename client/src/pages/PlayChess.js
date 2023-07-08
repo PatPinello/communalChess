@@ -48,7 +48,7 @@ function PlayChess(currentColor){
     }
 
     return([  
-        
+            
             <form className='moveChoices col-md-2 order-0' onSubmit={handleSubmit}>
                 <MoveChoices 
                     chess={game} 
@@ -56,7 +56,7 @@ function PlayChess(currentColor){
                     setMoveVotedFor={setMoveVotedFor}
                 />                   
             </form>,
-            <div className='chessBoard col-md-8 order-1'>
+            <div className='chessBoard col-md-4 offset-md-1 order-1'>
                 <Chessboard 
                     position={game.fen()}
                     onPieceDrop = {onDrop}

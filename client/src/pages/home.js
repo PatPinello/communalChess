@@ -37,17 +37,14 @@ const Home = () => {
         <div className="Home">
             <div className='container'>
                 <div className='row'>
-                    <div className='users col-md-2 order-0'> 
+                <div className='users'> 
                         {users && 
                         <UserDetails user={users["user"]}/>
                         }
-                    </div>
-                </div>
-                <div className='row'>
+                </div>                    
+                {PlayChess(currentColor)}
                     
-                        {PlayChess(currentColor)}
-                    
-                    <div className='voteRank col-md-2 order-2'>
+                    <div className='voteRank col-md-2 offset-md-1 order-2'>
                         <VoteRank/>
                     </div>
                 </div>
