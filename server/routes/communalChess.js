@@ -15,8 +15,7 @@ const router = express.Router()
 router.use(requireAuth)
 
 //get all
-// router.get('/', getAllUsers)
-router.post('/', getAllUsers)
+router.get('/', getAllUsers)
 
 //get one
 router.get('/:id', getUser)

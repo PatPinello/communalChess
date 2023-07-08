@@ -47,30 +47,23 @@ function PlayChess(currentColor){
         return true
     }
 
-    return(  
+    return([  
         
-        <div className="container">
-            
-                <div className='game row'>
-                    <div className='moveChoices col-md-3 order-0' >
-                        <form onSubmit={handleSubmit}>
-                            <MoveChoices 
-                                chess={game} 
-                                color={(currentColor.toString()).charAt(0)}
-                                setMoveVotedFor={setMoveVotedFor}
-                            />                   
-                        </form>
-                    </div>
-                    <div className='chessBoard col-md-9 order-1'>
-                        <Chessboard 
-                            position={game.fen()}
-                            onPieceDrop = {onDrop}
-                            boardOrientation={currentColor}
-                        />
-                    </div>
-                </div>
-            
-        </div>
+            <form className='moveChoices col-md-2 order-0' onSubmit={handleSubmit}>
+                <MoveChoices 
+                    chess={game} 
+                    color={(currentColor.toString()).charAt(0)}
+                    setMoveVotedFor={setMoveVotedFor}
+                />                   
+            </form>,
+            <div className='chessBoard col-md-8 order-1'>
+                <Chessboard 
+                    position={game.fen()}
+                    onPieceDrop = {onDrop}
+                    boardOrientation={currentColor}
+                />
+            </div>
+    ]
     )
 }
 export default PlayChess

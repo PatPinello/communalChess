@@ -1,15 +1,20 @@
- .chessBoard {
+.chessBoard {
     display:flex;
-    float: right;
-    align-items: right;
+    
     justify-content: right;
-    height: 70%;
+    height: 40%;
     width: 70%;
-    padding: 0% 10%; 
-    margin: 0% 30%;
+    float:right;
     box-sizing: border-box;
     border-color: black;
 } 
+.moveChoices {
+  width:fit-content;
+  margin-bottom: 5px;
+}
+.playChess {
+  height:50%;
+}
 
 *{
     margin: 0;
@@ -78,7 +83,4 @@
   [data-popup='tooltip'].popup-overlay {
     background: transparent;
   }
-  .moveChoices {
-    
-    margin-bottom: 5px;
-  }
+  

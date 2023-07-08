@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import UserDetails from '../components/userDetails'
 import PlayChess from './PlayChess'
+import VoteRank from '../components/voteRank'
+
 
 
 const Home = () => {
@@ -33,13 +35,23 @@ const Home = () => {
 
     return(
         <div className="Home">
-            <div className='users'> 
-                {users && 
-                <UserDetails user={users["user"]}/>
-                }
+            <div className='container'>
+                <div className='row'>
+                    <div className='users col-md-2 order-0'> 
+                        {users && 
+                        <UserDetails user={users["user"]}/>
+                        }
+                    </div>
+                </div>
+                <div className='row'>
+                    
+                        {PlayChess(currentColor)}
+                    
+                    <div className='voteRank col-md-2 order-2'>
+                        <VoteRank/>
+                    </div>
+                </div>
             </div>
-            {PlayChess(currentColor)}
-            
         </div>
     )
 }
