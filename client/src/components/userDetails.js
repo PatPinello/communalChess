@@ -4,7 +4,7 @@ const userDetails = ({ user }) => {
     return(
     <div className="user-details">
         <p>
-            <h2 style={{margin:0}}>Welcome {user.email}!</h2>
+            <h3 style={{margin:0}}>Welcome {user.email}!</h3>
             <strong>Total Votes Cast: {user.numVotes}</strong>
             <br/>
             <strong>Voted this hour: </strong>{!user.voted ? "No" : "Yes"}

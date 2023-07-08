@@ -6,6 +6,7 @@ import Navbar from './components/navbar'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import "bootstrap/dist/css/bootstrap.min.css"
+
 function App() {
   const { user } = useAuthContext()
 
@@ -16,25 +17,24 @@ function App() {
         
         <div className='pages'>
           <Routes>
-            <Route 
-              path="/"
-              element={user ? <Home /> : <Navigate to='/login'/>}
             
-            />
-            <Route 
-              path="/playChess"
-              element={user ? <playChess /> : <Navigate to='/login'/>}
-            
-            />
-            <Route 
-              path="/login"
-              element={!user ? <Login /> : <Navigate to="/"/>}
+              <Route 
+                path="/"
+                element={user ? <Home /> : <Navigate to='/login'/>}
               
-            />
-            <Route 
-              path="/signup"
-              element={!user ? <SignUp /> : <Navigate to="/"/>}
-            />
+              />
+            
+            
+              <Route 
+                path="/login"
+                element={!user ? <Login /> : <Navigate to="/"/>}
+                
+              />
+              <Route 
+                path="/signup"
+                element={!user ? <SignUp /> : <Navigate to="/"/>}
+              />
+            
           </Routes>
           
         </div>
