@@ -30,9 +30,10 @@ const userSchema = new Schema({
         required: true,
         default: color[Math.round((Math.random()))]
     },
-    user_id: {
+    moveVotedFor: {
         type: String,
-        required: true
+        required: true,
+        default: null
     }
 }, { timestamps: true })
 

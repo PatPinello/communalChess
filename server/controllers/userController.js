@@ -8,9 +8,9 @@ const createToken = (_id)=>{
 
 //get all users
 const getAllUsers = async (req,res) =>  {
-    
-    
-    const users = await userModel.find({}).sort({createdAt: -1})
+    const {variable} = req.body
+    console.log(variable)
+    const users = await userModel.find({variable}).sort({createdAt: -1})
     res.status(200).json(users)
 }
 
@@ -86,18 +86,17 @@ const deleteUser = async (req,res) => {
 
 //update user
 const updateUser = async (req,res) => {
-    const {id} = req.params
+    const {id, update} = req.params
 
     if(!mongoose.Types.ObjectId.isValid(id))
         return res.status(404).json({error: 'No User'})
 
-
     const user = await userModel.findOneAndUpdate({_id: id}, {
-        ...req.body
+        "moveVotedFor" : update
     })
     
     if (!user) return res.status(404).json({error:"No User Found"})
-    res.status(200).json({user})
+    res.status(200).json(user["moveVotedFor"])
 }
 
 module.exports = {

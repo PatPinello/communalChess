@@ -1,19 +1,45 @@
 import { Chessboard } from 'react-chessboard'
 import './chess.css'
 import {Chess} from 'chess.js'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import MoveChoices from '../components/moveChoices'
+import { useAuthContext } from '../hooks/useAuthContext'
+// import { move } from '../../../server/routes/communalChess'
+
+
 function PlayChess(currentColor){
     const [game, setGame] = useState(new Chess())
-    const [setPossibleMoveWhite] = useState(null)
     const [possibleMoveBlack, setPossibleMoveBlack] = useState("a6")
     const [moveVotedFor, setMoveVotedFor] = useState(null)
+    const [response, setResponse] = useState(null)
+    const {user} = useAuthContext()
+
+    //! TODO: get patch to use BODY instead of PARAMS
+    
+    const patchUser = async (moveVotedFor)=>{
+        
+        const res = await fetch(`/api/communalChess/${user.userID}/${moveVotedFor}`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            },
+            
+        })
+
+        const json = await res.json()
+        console.log(json)
+        if(res.ok) return("patch success")
+        else return("patch failed")
+
+    }
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
         
+        patchUser(moveVotedFor)
         makeMoveBlack(moveVotedFor)
-      }
+    }
     //game
     function safeGameMutate(modify){
         setGame((g)=>{
@@ -33,7 +59,6 @@ function PlayChess(currentColor){
 
     function onDrop(source,target){
         let move=null
-        let possibleMoveWhite = game.moves()
         safeGameMutate((game)=>{
             move = game.move({
                 from:source,

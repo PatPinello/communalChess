@@ -13,7 +13,6 @@ const MoveChoices = ({chess , color, setMoveVotedFor}) => {
         setMoveVotedFor(inputVal)
         setSearchText(inputVal.toString())
         
-        
     }
         
     if(chess.turn()===color)
@@ -27,7 +26,8 @@ const MoveChoices = ({chess , color, setMoveVotedFor}) => {
             <SelectSearch 
                 options={moves} 
                 onChange={handleInputChange} 
-                className="select-search"                 
+                className="select-search"
+                autoFocus='true'                 
                 search={true} 
                 placeholder= {searchText}
             />

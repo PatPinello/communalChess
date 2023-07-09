@@ -7,8 +7,8 @@ import VoteRank from '../components/voteRank'
 
 
 const Home = () => {
-    const [users, setUsers] = useState(null)
     const [currentColor, setCurrentColor] = useState("white")
+    const [users, setUsers] = useState(null)
     const {user} = useAuthContext()
 
     useEffect(() => {
@@ -39,13 +39,15 @@ const Home = () => {
                 <div className='row'>
                 <div className='users'> 
                         {users && 
-                        <UserDetails user={users["user"]}/>
+                            <UserDetails user={users["user"]}/>
                         }
                 </div>                    
                 {PlayChess(currentColor)}
                     
                     <div className='voteRank col-md-2 offset-md-1 order-2'>
-                        <VoteRank/>
+                        {users && 
+                            <VoteRank/>
+                        }
                     </div>
                 </div>
             </div>
