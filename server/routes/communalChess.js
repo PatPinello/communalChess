@@ -15,7 +15,7 @@ const router = express.Router()
 router.use(requireAuth)
 
 //get all
-router.get('/', getAllUsers)
+router.get('/:voted', getAllUsers)
 
 //get one
 router.get('/:id', getUser)

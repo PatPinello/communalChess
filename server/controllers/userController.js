@@ -8,9 +8,9 @@ const createToken = (_id)=>{
 
 //get all users
 const getAllUsers = async (req,res) =>  {
-    const {variable} = req.body
+    const {variable} = req.params
     console.log(variable)
-    const users = await userModel.find({variable}).sort({createdAt: -1})
+    const users = await userModel.find({voted}).sort({})
     res.status(200).json(users)
 }
 
@@ -34,9 +34,9 @@ const signupUser = async(req, res)=>{
     try{
         const user = await userModel.signup(email,password)
         const token = createToken(user._id)
+        const userID = user._id
         
-        
-        res.status(200).json({email, token})
+        res.status(200).json({email, token, userID})
     }catch(error){
         res.status(400).json({error: error.message})
     }
@@ -92,7 +92,8 @@ const updateUser = async (req,res) => {
         return res.status(404).json({error: 'No User'})
 
     const user = await userModel.findOneAndUpdate({_id: id}, {
-        "moveVotedFor" : update
+        "moveVotedFor" : update,
+        "voted" : true
     })
     
     if (!user) return res.status(404).json({error:"No User Found"})

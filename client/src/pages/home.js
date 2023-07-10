@@ -3,7 +3,7 @@ import { useAuthContext } from '../hooks/useAuthContext'
 import UserDetails from '../components/userDetails'
 import PlayChess from './PlayChess'
 import VoteRank from '../components/voteRank'
-
+import Timer from '../components/timer'
 
 
 const Home = () => {
@@ -37,18 +37,22 @@ const Home = () => {
         <div className="Home">
             <div className='container'>
                 <div className='row'>
-                <div className='users'> 
-                        {users && 
-                            <UserDetails user={users["user"]}/>
-                        }
-                </div>                    
-                {PlayChess(currentColor)}
-                    
-                    <div className='voteRank col-md-2 offset-md-1 order-2'>
-                        {users && 
-                            <VoteRank/>
-                        }
+                    <div className='users col'> 
+                            {users && 
+                                <UserDetails user={users["user"]}/>
+                            }
+                            
                     </div>
+                    <Timer/>
+                </div>
+                <div className='row'>                 
+                    {PlayChess(currentColor)}
+                        
+                        <div className='voteRank col-md-2 offset-md-1 order-2'>
+                            {users && 
+                                <VoteRank/>
+                            }
+                        </div>
                 </div>
             </div>
         </div>

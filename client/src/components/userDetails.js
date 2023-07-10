@@ -4,12 +4,12 @@ const userDetails = ({ user }) => {
     return(
     <div className="user-details">
         <p>
-            <h3 style={{margin:0}}>Welcome {user.email}!</h3>
-            <strong>Total Votes Cast: {user.numVotes}</strong>
+            <h4 style={{margin:0}}>welcome {user.email}!</h4>
+            <strong>total votes cast:</strong> {user.numVotes}
             <br/>
-            <strong>Voted this hour: </strong>{!user.voted ? "No" : "Yes"}
+            <strong>voted this hour: </strong>{!user.voted ? "no" : "yes"}
             <br/>
-            <strong>Color to Play: </strong>{user.currentColor}
+            <strong>color to play: </strong>{user.currentColor}
         </p>
     </div>)
 }

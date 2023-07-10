@@ -20,8 +20,8 @@ const Navbar = () => {
                     <nav className="col-md-2">
                         {user && (
                             <div>
-                                <button className="btn btn-outline-secondary col-md-2 order-1"style={{width:"100%",'backgroundColor':'#f0d9b5'}} onClick={handleClick}>Log out</button>
-                                <span className="col-md-1 order-0">{user.email}</span>
+                                <button className="btn btn-outline-secondary "style={{width:"100%",'backgroundColor':'#f0d9b5'}} onClick={handleClick}>Log out</button>
+                                
                             </div>
                         )}
                         {!user && (
